@@ -45,4 +45,17 @@ const downloadParams ={
 }
 return s3.getObject(downloadParams).createReadStream();
 }
+//function delete a file from s3
+exports.deleteFilyByKey = (fileKey,res)=>{
+const deleteParams ={
+    Key:fileKey,
+    Bucket:bucketName
+}
+ s3.deleteObject(deleteParams,(err,data)=>{
+     if(err)return res.json({status:false,error:err})
+     return res.json({status:true,data})
+    
+ });
+
+}
 

@@ -7,7 +7,7 @@ const util = require('util');
 const unlinkFile = util.promisify(fs.unlink)
 
 const multer  = require('multer');
-const {uploadFile,getFilyByKey}  = require('./../controllers/awsController');
+const {uploadFile,getFilyByKey,deleteFilyByKey}  = require('./../controllers/awsController');
 //Set Storage Engine
 const storage = multer.diskStorage({
     destination:'./public/uploads',
@@ -74,6 +74,11 @@ router.get('/profile/:key',(req,res)=>{
     const {key }=req.params;
  const readStreamData =   getFilyByKey(key);
  readStreamData.pipe(res)
+})
+router.delete('/profile/:key',async(req,res)=>{
+    const {key }=req.params;
+deleteFilyByKey(key,res);
+
 })
 
 module.exports =router;
