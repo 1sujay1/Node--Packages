@@ -4,9 +4,14 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const routes = require('./src/v1/controllers/index');
 const axios = require('axios');
+const ejs = require('ejs');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+
+app.set('view engine','ejs');
+app.use(express.static('./public'))
+
 app.use(routes)
 
 mongoose.connect(process.env.MONGO_DD, {
@@ -20,7 +25,7 @@ mongoose.connect(process.env.MONGO_DD, {
 
 
 app.get('/', (req, res) => {
-    return res.send("Hello Sujay")
+    return res.render("index")
 })
 
 const getYoutubePlayLists = async () => {
@@ -57,6 +62,10 @@ app.get('/youtube', async (req, res) => {
         status: true, message: ['Youtube api'], data: outputData
     })
 })
+
+const uploadRoutes = require('./src/v1/routes/staticRoute');
+
+app.use('/api/v1/',uploadRoutes);
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`Listening to port ${process.env.APP_PORT}`)
