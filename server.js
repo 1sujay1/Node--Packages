@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_DD, {
 
 
 app.get('/', (req, res) => {
-    return res.render("index")
+    return res.render("test")
 })
 
 const getYoutubePlayLists = async () => {

@@ -2,7 +2,7 @@ const S3 = require('aws-sdk/clients/s3');
 const fs =require('fs');
 
 const bucketName = process.env.AWS_BUCKET_NAME
-const region = process.env.AWS_BUCKET_REGION
+const region = 'ap-south-1'
 const accessKeyId = process.env.AWS_ACCESS_KEY
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
@@ -54,7 +54,6 @@ const deleteParams ={
  s3.deleteObject(deleteParams,(err,data)=>{
      if(err)return res.json({status:false,error:err})
      return res.json({status:true,data})
-    
  });
 
 }
