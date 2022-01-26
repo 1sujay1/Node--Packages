@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multer Demo</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multer Demo</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>File upload</h1>
-        <%= typeof msg !='undefined'?msg:'' %>
-        <form action="/api/v1/profile" method="post" enctype="multipart/form-data">
-            <div class="file-field input-field">
-              <div class="btn grey">
-                <span>File</span>
-                <input name="myFile" type="file">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-            </div>
-            <button class="btn" type="submit">Submit</button>
-            
-          </form>
-          <br>
-          <img src="<%= typeof msg != 'undefined' ? file:''%>" class="responsive-img"/>
-          <img src="/api/v1/profile/image-1641306561160.png" class="responsive-img"/>
-    </div>
+  <div class="container">
+    <h1>File upload</h1>
+    <%= typeof msg !='undefined' ?msg:'' %>
+      <form action="/api/v1/profile" method="post" enctype="multipart/form-data">
+        <div class="file-field input-field">
+          <div class="btn grey">
+            <span>File</span>
+            <input name="myFile" type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <button class="btn" type="submit">Submit</button>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      </form>
+      <br>
+      <img src="<%= typeof msg != 'undefined' ? file:''%>" class="responsive-img" />
+      <img src="/api/v1/profile/image-1641306561160.png" class="responsive-img" />
+  </div>
 
-        <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
+
 </html>

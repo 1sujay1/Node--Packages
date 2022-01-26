@@ -5,12 +5,15 @@ require('dotenv').config()
 const routes = require('./src/v1/controllers/index');
 const axios = require('axios');
 const ejs = require('ejs');
+const http = require('http');
+const server = http.createServer(app)
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine','ejs');
-app.use(express.static('./public'))
+app.set('view engine', 'ejs');
+// app.use(express.static('./public'))
 
 app.use(routes)
 
@@ -25,7 +28,7 @@ mongoose.connect(process.env.MONGO_DD, {
 
 
 app.get('/', (req, res) => {
-    return res.render("test")
+    return res.render("home")
 })
 
 const getYoutubePlayLists = async () => {
@@ -65,8 +68,28 @@ app.get('/youtube', async (req, res) => {
 
 const uploadRoutes = require('./src/v1/routes/staticRoute');
 
-app.use('/api/v1/',uploadRoutes);
+app.use('/api/v1/', uploadRoutes);
 
-app.listen(process.env.APP_PORT, () => {
+const io = require('socket.io')(server, { cors: { origin: "*" } });
+
+var dataArray = [];
+
+io.on('connection', (socket) => {
+    console.log("connected User", socket.id);
+
+    socket.on('message', (data) => {
+        dataArray.push(data)
+        io.emit('message', dataArray)
+    })
+})
+
+
+
+
+// app.get('/home', (req, res) => {
+//     res.render("home")
+// })
+
+server.listen(process.env.APP_PORT, () => {
     console.log(`Listening to port ${process.env.APP_PORT}`)
 })
