@@ -53,7 +53,17 @@ const signIn = async (req, res) => {
     }
 }
 
+const getUsers = async (req, res) => {
+    try {
+        let getAllUsers = await UserModel.updateOne({ _id: '61a28c60bdc0c463481a9018' }, { name: 'rohith' });
+        res.json({ status: true, data: getAllUsers })
+    } catch (error) {
+        return res.json({ status: false, message: [error.message] });
+    }
+}
+
 module.exports = {
     signUp,
-    signIn
+    signIn,
+    getUsers
 }

@@ -9,7 +9,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    name: String,
+    mobile: String,
+    order_id: String
 }, { timestamps: true })
 
 module.exports = mongoose.model("user", UserSchema, "userCollection")
